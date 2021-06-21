@@ -77,20 +77,20 @@ _Note :- `mongo-express` credentials can be found in the `.env` file_
 The following is an example document that is inserted into the database,
 ```json
 {
-    time: ISODate('2021-06-21T11:55:14.406Z'),
-    currencypair: 'ETH-USD',
-    rate: {
-        ask: '1976.01608',
-        bid: '1967.31938'
+    "time": "ISODate('2021-06-21T11:55:14.406Z')",
+    "currencypair": "ETH-USD",
+    "rate": {
+        "ask": "1976.01608",
+        "bid": "1967.31938"
     },
-    diff: {
-        value: 1.1239,
-        percentage: 0.0569
+    "diff": {
+        "value": 1.1239,
+        "percentage": 0.0569
     },
-    settings: {
-        fetchinterval: 5,
-        oscpercentage: 0.01,
-        price: 'ask'
+    "settings": {
+        "fetchinterval": 5,
+        "oscpercentage": 0.01,
+        "price": "ask"
     }
 }
 ```
