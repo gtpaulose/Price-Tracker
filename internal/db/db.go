@@ -35,12 +35,8 @@ func NewDB() *DB {
 	)
 
 	//Initialize the context
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()
-
-	fmt.Println("hi")
-
-	fmt.Println("connectionString: ", connectionString)
 
 	//Connect to the DB
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(connectionString))
