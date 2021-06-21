@@ -1,0 +1,44 @@
+version: '2.2'
+
+services:   
+  tracker:
+    container_name: tracker
+    build: .
+    env_file:
+      - .env
+
+  mongodb:
+    container_name: mongodb
+    image: bitnami/mongodb:latest
+    env_file:
+      - .env
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MONGODB_SYSTEM_LOG_VERBOSITY=0
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db:/bitnami
+
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express:latest
+    env_file:
+      - .env
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=${MONGODB_DATABASE}
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGODB_USERNAME}
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGODB_PASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_LOGIN}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASSWORD}
+    restart: always
+    ports:
+      - 27018:8081
+    depends_on: 
+      - mongodb
