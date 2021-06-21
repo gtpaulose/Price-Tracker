@@ -6,6 +6,7 @@ import (
 )
 
 type (
+	// Record is the schema of the document stored on the database
 	Record struct {
 		Time         time.Time
 		CurrencyPair string
@@ -24,7 +25,7 @@ func NewRecord(cp string, rate Rate, diffValue, diffPerc float64, settings Setti
 	return &Record{time.Now(), cp, rate, newDiff(diffValue, diffPerc), settings}
 }
 
-// TODO: Dynamically change the rounded value based on settings.OscOscPercentage
+// TODO: Dynamically change the rounded value based on settings.OscPercentage
 // newDiff will create a new Diff object and limit the decimal places to 4
 func newDiff(diffValue, diffPerc float64) Diff {
 	return Diff{
