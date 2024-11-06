@@ -1,4 +1,4 @@
-# Uphold Assessment
+# Price Tracker
 
 The price tracker has the ability to alert the user of any price oscillations to the ask and/or the bid price for a specific currency pair. Alerting is done via logging on the console and using a database.
 
